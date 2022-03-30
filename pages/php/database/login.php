@@ -41,6 +41,31 @@
             return $arrayLogin;
 
         }
+    
+        public static function inserisci(User $objUser): bool {
+            $operazioneRiuscita = false;
+            try {
+
+                $db = new JSONDB(self::$directoryDB);
+
+                $db->insert( 
+                    self::$tableName, 
+                    [
+                        'userId' => $objUser->userId,
+                        'username' => $objUser->username,
+                        'password' => $objUser->password
+                    ]
+                );
+
+                $operazioneRiuscita = true;
+
+            } catch (\Throwable $th) {
+
+            }
+
+            return $operazioneRiuscita;
+            
+        }
 
     }
 
