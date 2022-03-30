@@ -8,7 +8,7 @@
 
     class loginRepository{
 
-        private static string $directoryDB = "../../json";
+        private static string $directoryDB = __DIR__;
         private static string $tableName = 'login';
         private static string $fileName = 'login.json';
 
