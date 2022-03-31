@@ -48,8 +48,8 @@
          * @return bool Risultato dell'operazione: true = successo, false = fallimento
          */
     
-        public static function inserisci(User $objUser): bool {
-            $operazioneRiuscita = false;
+        public static function insert(User $objUser): bool {
+            $operationDone = false;
             try {
 
                 $db = new JSONDB(self::$directoryDB);
@@ -63,13 +63,13 @@
                     ]
                 );
 
-                $operazioneRiuscita = true;
+                $operationDone = true;
 
             } catch (\Throwable $th) {
 
             }
 
-            return $operazioneRiuscita;
+            return $operationDone;
             
         }
 
