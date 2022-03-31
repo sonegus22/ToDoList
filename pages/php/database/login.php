@@ -41,6 +41,12 @@
             return $arrayLogin;
 
         }
+
+        /**
+         * Inserisce nel DB l'istanza di SmartTV specificata
+         * @param SmartTv $objSmartTV Istanza da inserire
+         * @return bool Risultato dell'operazione: true = successo, false = fallimento
+         */
     
         public static function inserisci(User $objUser): bool {
             $operazioneRiuscita = false;
@@ -51,9 +57,9 @@
                 $db->insert( 
                     self::$tableName, 
                     [
-                        'userId' => $objUser->userId,
-                        'username' => $objUser->username,
-                        'password' => $objUser->password
+                        'userId' => $objUser->getUserId(),
+                        'username' => $objUser->getUsername(),
+                        'password' => $objUser->getPassword()
                     ]
                 );
 

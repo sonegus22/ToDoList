@@ -3,7 +3,8 @@
     require("./class/users.php");
 
     $prova = new User (2, "Ste", "ssaaass");
-    loginRepository::inserisci($prova);
+    $test = loginRepository::inserisci($prova);
+    echo $test;
 
     $prova->getAll();
 ?>
