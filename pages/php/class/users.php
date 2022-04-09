@@ -1,12 +1,11 @@
 <?php
-
-require_once('D:\XAMPP\xampp_7.4.23\htdocs\todolist\pages\php\database/login.php');
+require_once(__DIR__ . "\..\database\login.php");
 
 class User {
 
-    private int $userId;
-    private string $username;
-    private string $password;
+    public int $userId;
+    public string $username;
+    public string $password;
 
     public function __construct(int $userIdPar, string $usernamePar, string $passwordPar){
         $this->userId = $userIdPar;

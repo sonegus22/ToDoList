@@ -99,6 +99,28 @@
 
         }
 
+        public static function delete(int $userId): bool {
+
+            $operationDone = false;
+            
+            try {
+            
+                $db = new JSONDB(self::$directoryDB);
+                
+                $db->delete()
+                    ->from( self::$fileName )
+                    ->where( [ 'userId' => $userId ] )
+                    ->trigger();
+
+                $operationDone = true;
+
+            } catch (\Throwable $th) {
+                
+            }
+
+            return $operationDone;
+
+        }
 
     }
 
