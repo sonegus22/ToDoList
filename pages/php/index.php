@@ -1,10 +1,11 @@
 <?php
 
-    require("./class/users.php");
+    require("./class/user.php");
 
     $prova = new User (2, "Ste", "ssaaass");
-    $test = loginRepository::insert($prova);
+    $test = LoginRepository::insert($prova);
     echo $test;
 
-    $prova->getAll();
+    //$prova->getAll();
+    
 ?>
