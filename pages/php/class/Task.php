@@ -1,58 +1,44 @@
 <?php
 
+require_once("./database/TaskRepository.php");
+
 class Task {
 
     private string $name;
-    private Record $recordFather;
-    private Task $nextTask;
+    private int $userId;
     private int $taskId;
-    private static int $taskIdCounter = 0;
-    
-    public function __construct(string $namePar, Record $recordFatherPar){
-        $this->name = $namePar;
-        $this->recordFather = $recordFatherPar;
-        $this->nextTask = null;
-        self::$taskIdCounter++;
-        $this->taskId = self::$taskIdCounter;
+    private static int $taskIdCounter = 1;
+
+    public function __construct(string $name, int $userId, int $taskId) {
+        $this->name = $name;
+        $this->userId = $userId;
+        $this->taskId = $taskId;
+        Task::$taskIdCounter++;
     }
 
-    public function getName(){
+    public function getName(): string {
         return $this->name;
     }
-    public function setName(string $namePar){
-        $this->name = $namePar;
+    public function setName(string $name): void {
+        $this->name = $name;
     }
 
-    public function getRecordFather(){
-        return $this->recordFather;
+    public function getUserId(): int {
+        return $this->userId;
     }
-    public function setRecordFather(Record $recordFatherPar){
-        $this->recordFather = $recordFatherPar;
-    }
-
-    public function getNextTask(){
-        return $this->nextTask;
-    }
-    public function setNextTask(Task $nextTaskPar){
-        $this->nextTask = $nextTaskPar;
+    public function setUserId(int $userId): void {
+        $this->userId = $userId;
     }
 
-    public function getTaskId(){
+    public function getTaskId(): int {
         return $this->taskId;
     }
-    public function setTaskId(int $taskIdPar){
-        $this->taskId = $taskIdPar;
+    public function setTaskId(int $taskId): void {
+        $this->taskId = $taskId;
     }
 
-    public function getTaskIdCounter(){
-        return self::$taskIdCounter;
-    }
-    public function setTaskIdCounter(int $taskIdCounterPar){
-        self::$taskIdCounter = $taskIdCounterPar;
-    }
 
     
-
 }
 
 ?>

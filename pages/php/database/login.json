@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "userId": 1,
+        "username": "Ste",
+        "password": "$2y$10$c2MpL7uqdFEpYqOi6U6Qd.DGQ9L70dP0oxRIcYUM3ES3JEl.4bdZS"
+    },
+    {
+        "userId": 2,
+        "username": "luca",
+        "password": "$2y$10$VvrFYibaOgkKfx91YT\/FHuBHzC\/BpsIQ0ZrOiVd4\/4sDl9.pPrUma"
+    },
+    {
+        "userId": 3,
+        "username": "Miao",
+        "password": "$2y$10$.bGur.JOAyXcbcJxOescf.cti78CRx34l5AXK0zJYmmtW7T3aXddG"
+    }
+]

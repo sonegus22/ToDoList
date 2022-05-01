@@ -1,6 +1,6 @@
 <?php
 
-require_once('./database/login.php');
+require_once('./database/LoginRepository.php');
 
 class User {
 
