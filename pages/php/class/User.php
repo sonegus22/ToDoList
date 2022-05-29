@@ -7,9 +7,15 @@ class User {
     private int $userId;
     private string $username;
     private string $password;
+    private static int $userIdCounter = 1;
 
     public function __construct(int $userIdPar, string $usernamePar, string $passwordPar){
-        $this->userId = $userIdPar;
+        if($userIdPar == 0){
+            $this->userId = $this->userIdCounter;
+            $this->userIdCounter++;
+        } else {
+            $this->userId = $userIdPar;
+        }
         $this->username = $usernamePar;
         $this->password = $passwordPar;
     }
@@ -60,7 +66,7 @@ class User {
 
     }*/
 
-    public function login(string $usernamePar, string $passwordPar): int{
+    public static function login(string $usernamePar, string $passwordPar): int{
         $user = LoginRepository::extractUsernamePassword($usernamePar);
         $userLogged = null;
 
@@ -81,27 +87,40 @@ class User {
         return $userLogged->userId || $userLogged;
     }
 
-    public function register(string $usernamePar, string $passwordPar, string $passwordConfirmPar){
+    public static function register(string $usernamePar, string $passwordPar, string $passwordConfirmPar){
 
-        if($passwordPar == $passwordConfirmPar){
+        $tryUser = LoginRepository::extractUsername($usernamePar);
+        $usernameTry = $tryUser->getUsername();
 
-            $user = new User(0, $usernamePar, $passwordPar);
-            $insert = LoginRepository::insert($user);
+        if($usernamePar == $usernameTry){
+            echo "<p class='userFound'>User already exists</p>";
+        } else{
 
-            if($insert){
-                echo "<p class='userRegistration'>User registered</p>";
-            }else{ 
-                echo "<p class='userRegistration'>User not registered</p>";
+            if($usernamePar == "" || $passwordPar == "" || $passwordConfirmPar == ""){
+
+                echo "<p class='userFound'>Please fill all the fields</p>";
+
+            } else {
+            
+                if($passwordPar == $passwordConfirmPar){
+
+                    $user = new User(0, $usernamePar, $passwordPar);
+                    $insert = LoginRepository::insert($user);
+
+                    if($insert){
+                        echo "<p class='userRegistration'>User registered</p>";
+                    }else{ 
+                        echo "<p class='userRegistration'>User not registered</p>";
+                    }
+
+                }else{
+
+                    echo "<p class='passwordError'>Passwords do not match</p>";
+                
+                }
             }
-
-        }else{
-
-            echo "<p class='passwordError'>Passwords do not match</p>";
-        
         }
-
     }
-
 }
 
 ?>

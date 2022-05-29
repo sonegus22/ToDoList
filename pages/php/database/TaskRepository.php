@@ -92,7 +92,7 @@
 
         }
 
-        public static function update(Task $objTask): bool{
+        public static function update(int $userId, String $taskName): bool{
 
             $operationDone = false;
 
@@ -101,12 +101,10 @@
                 $db = new JSONDB(self::$directoryDB);
 
                 $db->update( [ 
-                    'name' => $objTask->getName(),
-                    'taskId' => $objTask->getTaskId(),
-                    'userId' => $objTask->getUserId(),
+                    'name' => $taskName,
                 ] )
                 ->from( self::$fileName )
-                ->where( [ 'taskId' => $objTask->getTaskId() ])
+                ->where( [ 'taskId' => $userId ])
                 ->trigger();
 
                 $operationDone = true;
@@ -119,6 +117,33 @@
 
         }
 
+        public static function extractTask(int $taskId): Task{
+
+            $objTask = null;
+
+            try{
+
+                $db = new JSONDB(self::$directoryDB);
+
+                $arrayDB = $db -> select( '*' ) -> from ( self::$fileName ) -> where( [ 'taskId' => $taskId ] ) -> get();
+
+                foreach ($arrayDB as $objDB) {
+                            
+                    $objTask = new Task(
+                        $objDB["name"],
+                        $objDB["userId"],
+                        $objDB["taskId"]
+                    );
+
+                }
+
+            } catch (\Throwable $th){
+
+            }
+            
+            return $objTask;
+        }
     }
+
 
 ?>

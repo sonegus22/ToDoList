@@ -9,10 +9,10 @@ class Task {
     private int $taskId;
     private static int $taskIdCounter = 1;
 
-    public function __construct(string $name, int $userId, int $taskId) {
+    public function __construct(string $name, int $userId) {
         $this->name = $name;
         $this->userId = $userId;
-        $this->taskId = $taskId;
+        $this->taskId = $this->taskIdCounter;
         Task::$taskIdCounter++;
     }
 
@@ -36,8 +36,6 @@ class Task {
     public function setTaskId(int $taskId): void {
         $this->taskId = $taskId;
     }
-
-
     
 }
 

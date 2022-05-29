@@ -3,7 +3,7 @@
     require("./class/User.php");
     require("./class/Task.php");
 
-    $prova1 = new User (1, "Ste", "ssaaass");
+    /*$prova1 = new User (1, "Ste", "ssaaass");
     $test = loginRepository::insert($prova1);
     
     $prova2 = new User (2, "luca", "aaaaa");
@@ -30,6 +30,13 @@
             echo $task->getName();
             echo"<br>";
         }    
-    }
+    }*/
+
+    /*create registration*/
+    $username = "Ste";
+    $password = "ssaaass";
+    $passwordConfirm = "ssaaass";
+    $newUser = User::register($username, $password, $passwordConfirm);
+    echo $newUser;
 
 ?>

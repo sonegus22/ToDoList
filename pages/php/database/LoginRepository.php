@@ -145,6 +145,32 @@
 
         }
 
+        public static function extractUsername(string $username){
+
+            $objUser = null;
+            try{
+
+                $db = new JSONDB(self::$directoryDB);
+                $arrayDB = $db -> select( '*' ) -> from ( self::$fileName ) -> where( [ 'username' => $username ] ) -> get();
+
+                foreach ($arrayDB as $objDB) {
+
+                    $objUser = new User (
+                        $objDB[null],
+                        $objDB["username"],
+                        ""
+                    );
+
+                }
+
+            } catch (\Throwable $th){
+
+            }
+
+            return $objUser;
+
+        }
+
     }
 
 ?>
