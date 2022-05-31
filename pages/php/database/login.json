@@ -1,17 +1,19 @@
 [
     {
         "userId": 1,
-        "username": "Ste",
-        "password": "$2y$10$c2MpL7uqdFEpYqOi6U6Qd.DGQ9L70dP0oxRIcYUM3ES3JEl.4bdZS"
-    },
+        "username": "Ciaociao",
+        "password": "$2y$10$I2nr.ZprMzhh95oJ1H\/ySOaFx.8DROsCFr1mQD3T6WM2mrkXl0qXy"
+    }
+,
     {
-        "userId": 2,
-        "username": "luca",
-        "password": "$2y$10$VvrFYibaOgkKfx91YT\/FHuBHzC\/BpsIQ0ZrOiVd4\/4sDl9.pPrUma"
-    },
+        "userId": 1,
+        "username": "StefanoSos",
+        "password": "$2y$10$OH.P47TRSG2mOWsqrA8DW.jruDfhPZrnviQiLPb7D1hcIVLgpML0a"
+    }
+,
     {
-        "userId": 3,
-        "username": "Miao",
-        "password": "$2y$10$.bGur.JOAyXcbcJxOescf.cti78CRx34l5AXK0zJYmmtW7T3aXddG"
+        "userId": 1,
+        "username": "AlessioSos",
+        "password": "$2y$10$8BV9Lvd2W32sGfg85X82R.xNqIpZU9Ib3pHJhoZwz6PJyMQbiVyHe"
     }
 ]

@@ -1,5 +1,8 @@
 <?php
 
+    require("../class/User.php");
+    require("../class/Task.php");
+
     $controller = $_GET['controller'];
     $action = $_GET['action'];
 
@@ -14,7 +17,7 @@
             if($userLoggedId == -1){
                 
                 echo '<p id="errorData"> Username o password errati </p>';
-                require_once("#");
+                require_once("../loginpage.php");
                 
             } else {
                     

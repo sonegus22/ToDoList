@@ -3,40 +3,84 @@
     require("./class/User.php");
     require("./class/Task.php");
 
-    /*$prova1 = new User (1, "Ste", "ssaaass");
-    $test = loginRepository::insert($prova1);
     
-    $prova2 = new User (2, "luca", "aaaaa");
-    $test = loginRepository::insert($prova2);
 
-    $prova3 = new User (3, "Miao", "lalals");
-    $test = loginRepository::insert($prova3); 
+    if(isset($_GET["controller"])){
+        $controller = $_GET["controller"];
+    } else
+        $controller = "login";
+     
+    if(isset($_GET["action"])){
+        $action = $_GET["action"];
+    }
 
-    if (loginRepository::delete(1)) {
-        echo "eliminato 1";
-    } else {
-        echo "errore";
-    } 
 
-    echo "<br>";
+    if($controller == "login"){
 
-    $test1 = new Task('task1', 1, 1);
-    $test2 = TaskRepository::insert($test1);
-    $test3 = new Task ('task2', 1, 2);
-    $test2 = TaskRepository::insert($test3);
-    $test3 = TaskRepository::extractAllByUser(1);
-    if($test3 != null){
-        foreach($test3 as $task){
-            echo $task->getName();
-            echo"<br>";
-        }    
-    }*/
+        header("Location: loginpage.php");
 
-    /*create registration*/
-    $username = "Ste";
-    $password = "ssaaass";
-    $passwordConfirm = "ssaaass";
-    $newUser = User::register($username, $password, $passwordConfirm);
-    echo $newUser;
+        if($action == "login"){
+
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $userLoggedId = User::login($username, $password);
+            if($userLoggedId == -1){
+                
+                echo '<p id="errorData"> Username o password errati </p>';
+                require_once("#");
+                
+            } else {
+                    
+                echo '<p id="successData"> Benvenuto '.$username.' </p>';
+                $userLogged = TaskRepository::extractAllByUser($userLoggedId);
+
+                foreach ($userLogged as $task) {
+                    echo '<p class="task">'.$task->getName().'</p>';
+                }
+
+            }
+
+        } else if($action == "register"){
+
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $passwordConfirm = $_POST['passwordConfirm'];
+
+            $newUser = User::register($username, $password, $passwordConfirm);
+
+        }
+
+    } else if($controller == "task"){
+
+        if($action == "addTask"){
+
+            $userId = $_POST['userId'];
+            $taskName = $_POST['taskName'];
+            $taskDescription = $_POST['taskDescription'];
+
+            $newTask = TaskRepository::insert(new Task($taskName, $userId));
+
+        } else if($action == "editTask"){
+
+            $taskId = $_POST['taskId'];
+            $taskName = $_POST['taskName'];
+
+            $editTask = TaskRepository::update($taskId, $taskName);
+
+        } else if($action == "deleteTask"){
+
+            $taskId = $_POST['taskId'];
+            $deleteTask = TaskRepository::delete($taskId);
+
+        } else if($action == "getTask"){
+
+            $taskId = $_POST['taskId'];
+            $getTask = TaskRepository::extractAllByUser($taskId);
+
+        }
+
+    }
+
 
 ?>

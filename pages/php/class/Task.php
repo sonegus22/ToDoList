@@ -1,6 +1,6 @@
 <?php
 
-require_once("./database/TaskRepository.php");
+require_once("../database/TaskRepository.php");
 
 class Task {
 
