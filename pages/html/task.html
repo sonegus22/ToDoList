@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="../css/task.css" rel ="stylesheet" type ="text/css">
+        <title>Task</title>
+    </head>
+
+    <body>
+
+
+        <div class="page">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class = "page-col sub">
+
+                        
+                        
+                        <ul>
+                            <div class="profile-section">
+                                <div class="user-info">
+                                <img class="img" src="..\img\avatarLog.png" alt="Avatar" class="avatar" align="left">
+                                
+                                    <p>user</p>
+                                    <p>mail</p>
+
+                                </div>
+                            </div>
+
+
+                            <!--<li class="page-link"> <a href="#"> <p class="link-text">Task</p></a></li>-->
+
+                        </ul>
+
+                    </div>
+                    
+                    <div class = "page-col main">
+
+                        <ul>
+        
+                            <div id="myDIV" class="header">
+                                <h2 style="margin:5px">My To Do List</h2>
+                                <input type="text" id="myInput" placeholder="Title...">
+                                <span onclick="newElement()" class="addBtn">Add</span>
+                              </div>
+                              
+                              <ul id="myUL">
+
+                              </ul>
+                                
+
+                            <script>
+                                // Create a "close" button and append it to each list item
+                                var myNodelist = document.getElementsByTagName("LI");
+                                var i;
+                                for (i = 0; i < myNodelist.length; i++) {
+                                  var span = document.createElement("SPAN");
+                                  var txt = document.createTextNode("\u00D7");
+                                  span.className = "close";
+                                  span.appendChild(txt);
+                                  myNodelist[i].appendChild(span);
+                                }
+                                
+                                // Click on a close button to hide the current list item
+                                var close = document.getElementsByClassName("close");
+                                var i;
+                                for (i = 0; i < close.length; i++) {
+                                  close[i].onclick = function() {
+                                    var div = this.parentElement;
+                                    div.style.display = "none";
+                                  }
+                                }
+                                
+                                // Add a "checked" symbol when clicking on a list item
+                                var list = document.querySelector("#myUL");
+                                list.addEventListener('click', function(ev) {
+                                  if (ev.target.tagName === 'LI') {
+                                    ev.target.classList.toggle('checked');
+                                  }
+                                }, false);
+                                
+                                // Create a new list item when clicking on the "Add" button
+                                function newElement() {
+                                  var li = document.createElement("li");
+                                  var inputValue = document.getElementById("myInput").value;
+                                  var t = document.createTextNode(inputValue);
+                                  li.appendChild(t);
+                                  if (inputValue === '') {
+                                    alert("You must write something!");
+                                  } else {
+                                    document.getElementById("myUL").appendChild(li);
+                                  }
+                                  document.getElementById("myInput").value = "";
+                                
+                                  var span = document.createElement("SPAN");
+                                  var txt = document.createTextNode("\u00D7");
+                                  span.className = "close";
+                                  span.appendChild(txt);
+                                  li.appendChild(span);
+                                
+                                  for (i = 0; i < close.length; i++) {
+                                    close[i].onclick = function() {
+                                      var div = this.parentElement;
+                                      div.style.display = "none";
+                                    }
+                                  }
+                                }
+                                </script>
+                            <!------------------------------------------------------------------------------------------->
+                        </ul>
+
+                    </div>
+
+                <!--</div>-->
+
+            </div>
+
+        </div>    
+
+        <!--<div class="row">
+                
+
+        
+        <!-- add left section
+        <div class="container-left-section">
+            <div class="left-section">
+                <div class="col">
+                    <p>ciao</p>
+                    <ul>
+                        <li><a href="#"><p>Task</p></a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>-->
+
+
+
+
+
+        
+        </div>
+    </body>
+
+</html>

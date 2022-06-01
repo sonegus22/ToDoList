@@ -1,0 +1,242 @@
+body {
+    margin: 0;
+    min-width: 250px;
+    background-color: #fff;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @font-face {
+    font-family: Raleway-Regular;
+    src: url(../../font/Raleway/Raleway-Regular.ttf);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*list items */
+  ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+    
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Set all odd list items to a different color (zebra-stripes) */
+  ul li:nth-child(odd) {
+    background: #f9f9f9;
+  }
+  
+  /* Darker background-color on hover */
+  ul li:hover {
+    background: #ddd;
+  }
+  
+  /* When clicked on, add a background color and strike out text */
+  ul li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+  }
+  
+  /* Add a "checked" mark when clicked on */
+  ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
+  
+  /* Style the close button */
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  .close:hover {
+    background-color: #afafff;
+    color: white;
+  }
+  
+  /* Style the header */
+  .header {
+    background-color: #BFBFFF;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+  }
+  
+  .title{
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  
+  /* Clear floats after the header */
+  .header:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the input */
+  input {
+    margin: 0;
+    border: none;
+    border-radius: 20px 0px 0px 20px;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+  }
+
+  input::content{
+    border: none !important;
+  }
+  
+    /* "Add" button */
+  .addBtn {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0px 20px 20px 0px;
+  }
+  
+  .addBtn:hover {
+    background-color: #bbb;
+  }
+
+    /* Style the container */
+    .container-left-section {
+        padding: 20px;
+        background-color: #f2f2f2;
+        display: flex;
+        
+    }
+
+
+    /*PAGE DIVISION MULTIPLEXING*/
+  
+  .page ul{
+      list-style: none;
+  }
+  
+  .page-col ul{
+      margin-bottom: 0;
+      padding: 0;
+  
+  }
+  
+  .page-col h4{
+      font-size: 18px;
+      color: black;
+      text-transform: capitalize;
+      margin-bottom: 30px;
+      font-weight: 500;
+      position: relative;
+  }
+  
+  .page-col h4::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      background-color: rgb(0, 0, 0);
+      height: 2px;
+      box-sizing: border-box;
+      width: 50px;
+  }
+
+  .page-col ul li a{
+      font-size: 16px;
+      text-transform: capitalize;
+      text-decoration: none;
+      font-weight: 300;
+      color: #a3a3a3;
+      display: block;
+  }
+  
+  .page-col a{
+      list-style: none;
+  }
+  
+  .row{
+      display: flex;
+      width: 100%;
+      height: 100%;
+  }
+  
+  .page-col{
+      padding: 0 1%;
+  }
+  
+  .page-link {
+      width: fit-content;
+  }
+  
+  .page-link a:hover{
+
+      color: rgb(43, 43, 43);
+  }
+
+  .main{
+    background-color: #BFBFFF;
+    width: 100%;
+    
+  }
+
+  .sub{
+    padding-right: 20%;
+    
+  }
+
+  .img{
+      margin-top: 0%;
+      padding-top: 30%;
+      width: 65%;
+  }
+/*
+  .user-info p{
+    vertical-align: center;
+    text-align: center;
+  }
+
+  .user-info img{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mail{
+    display: flex;
+  }
+
+  */
+
