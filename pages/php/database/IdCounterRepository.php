@@ -13,28 +13,79 @@
         private static string $fileName = 'idCounter.json';
         //public static int $id = 1;
 
-        public static function extract(){
+        /*
+         * This method gets the last user id;
+         */
+        public static function extract(): int {
 
-            $objCounter = null;
+            $idCounter = 0; // Creating a variable to return
             try{
 
-                $db = new JSONDB(self::$directoryDB);
-                $arrayDB = $db -> select( '*' ) -> from ( self::$fileName ) -> get();
+                $db = new JSONDB(self::$directoryDB); // Loading the database
+                // Fetching all the fields from the specified file and save it into arrayDB
+                $arrayDB = $db -> select( '*' ) -> from ( self::$fileName ) -> get(); // 
+                
+                foreach ($arrayDB as $objDB) { // 
 
-                foreach ($arrayDB as $objDB) {
-
-                    $objCounter = new IdCounter (
-                        $objDB["counter"]
-                    );
-
+                    $idCounter = $objDB["counter"];
                 }
 
             } catch (\Throwable $th){
 
             }
 
-            return $objCounter;
+            return $idCounter;
 
+        }
+
+        public static function insert(int $idCounter) : bool{
+
+            $operationDone = false;
+
+            try{
+
+                $db = new JSONDB(self::$directoryDB);
+                
+                $db -> insert(
+                    self::$tableName,
+                    [
+                        'counter' => $idCounter
+                    ]
+                );
+
+                $operationDone = true;
+
+            } catch (\Throwable $th){
+
+            }
+
+            return $operationDone;
+        }
+
+        public static function update(int $idCounter) : bool{
+
+            $operationDone = false;
+
+            try{
+
+                $db = new JSONDB(self::$directoryDB);
+                
+                $db -> update(
+                    [
+                        'counter' => $idCounter
+                    ]
+                )
+
+                -> from( self::$fileName )
+                -> trigger();
+
+                $operationDone = true;
+
+            } catch (\Throwable $th){
+
+            }
+
+            return $operationDone;
         }
 
     }

@@ -1,19 +1,7 @@
 [
     {
         "userId": 1,
-        "username": "Ciaociao",
-        "password": "$2y$10$I2nr.ZprMzhh95oJ1H\/ySOaFx.8DROsCFr1mQD3T6WM2mrkXl0qXy"
-    }
-,
-    {
-        "userId": 1,
-        "username": "StefanoSos",
-        "password": "$2y$10$OH.P47TRSG2mOWsqrA8DW.jruDfhPZrnviQiLPb7D1hcIVLgpML0a"
-    }
-,
-    {
-        "userId": 1,
-        "username": "AlessioSos",
-        "password": "$2y$10$8BV9Lvd2W32sGfg85X82R.xNqIpZU9Ib3pHJhoZwz6PJyMQbiVyHe"
+        "username": "Giulia",
+        "password": "1234"
     }
 ]

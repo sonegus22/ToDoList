@@ -7,7 +7,7 @@
         <input type = 'text' name = 'password'> <br>
         <input type = 'submit' value = 'Invia'>
     </form> 
-    <a href = '../registration.php'> 
+    <a href = './registration.php'> 
         Registrati
     </a>
     ";

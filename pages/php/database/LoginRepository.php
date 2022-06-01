@@ -43,6 +43,11 @@
 
         }
 
+        /**
+         * This method extract a specified user from the database
+         * @param string $username The username of the user
+         * @return User The user object
+         **/        
         public static function extract(string $username){
 
             $objUser = null;
@@ -69,11 +74,14 @@
 
         }
 
+        /**
+         * This method insert a new user into the database
+         * @param User $user The user object
+         * @return bool True if the operation is done, false otherwise
+         */
         public static function insert(User $objUser): bool {
 
             $operationDone = false;
-
-            $objUser->setPassword(password_hash($objUser->getPassword(), PASSWORD_DEFAULT));
 
             self::$id += 1;
             $objUser -> setUserId(self::$id);
@@ -101,6 +109,11 @@
             
         }
 
+        /**
+         * This method delete a specified user from the database
+         * @param string $username The username of the user
+         * @return bool True if the operation is done, false otherwise
+         */
         public static function delete(string $username): bool{
 
             $operationDone = false;
@@ -119,6 +132,11 @@
 
         }
 
+        /**
+         * This method extract the username and the password from the database to check the login
+         * @param string $username The username of the user
+         * @param User $objUser The user object
+         */
         public static function extractUsernamePassword(string $username){
 
             $objUser = null;
@@ -145,6 +163,11 @@
 
         }
 
+        /**
+         * This method extract the username to check the presence of a user in the database
+         * @param string $username The username of the user
+         * @return bool True if the user is present, false otherwise
+         */
         public static function extractUsername(string $username){
 
             $objUser = null;

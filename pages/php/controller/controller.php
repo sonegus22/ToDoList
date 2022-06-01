@@ -3,6 +3,11 @@
     require("../class/User.php");
     require("../class/Task.php");
 
+
+    /**
+     * Get the controller and the action from the URL with the GET method
+     */
+
     $controller = $_GET['controller'];
     $action = $_GET['action'];
 

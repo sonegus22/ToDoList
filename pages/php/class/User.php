@@ -5,17 +5,25 @@ require_once('../database/IdCounterRepository.php');
 
 class User {
 
-    private int $userId;
+    private int    $userId;
     private string $username;
     private string $password;
-    private static int $userIdCounter = 1;
 
-    public function __construct(int $userIdPar, string $usernamePar, string $passwordPar){
-        if($userIdPar == 0){
-            $this->userId = User::$userIdCounter;
-            User::$userIdCounter++;
+    /**
+     * The constructor instantiates a user
+     * if the userIdPar [User ID] is not set
+     * a new UUID is generated and assigned
+     * to that attribute.
+     * @param int $userIdPar User's identifier [UUID]
+     * @param string $usernamePar User's username
+     * @param string $passwordPar User's password
+     */
+    public function __construct(string $userIdPar, string $usernamePar, string $passwordPar){
+        // If the userId is not set
+        if ($userIdPar == '') {
+            $this->userId = uniqid(); // Generate a new Universal Unique IDentifier
         } else {
-            $this->userId = $userIdPar;
+            $this->userId = $userIdPar; // Set the given one
         }
         $this->username = $usernamePar;
         $this->password = $passwordPar;
@@ -44,34 +52,21 @@ class User {
     public function setPassword (string $passwordPar){
         $this->password = $passwordPar;
     }
-    
-    /*public function getAll(){
 
-        $arrayUsers = loginRepository::extractAll();
-
-        foreach($arrayUsers as $users){
-
-            ?>
-                <p>
-            <?php
-
-            echo"$users->userId";
-
-            ?>
-                </p>
-            <?php
-
-        }
-
-    }*/
-
-    public static function login(string $usernamePar, string $passwordPar): int{
+    /**
+     * This method checks if the credentials are correct, if they are
+     * the user will be redirected to the control panel.
+     * @param string $usernamePar The username of the user
+     * @param string $passwordPar The password of the user
+     * @return int User Id
+     */
+    public static function login (string $usernamePar, string $passwordPar) : int {
         $user = LoginRepository::extractUsernamePassword($usernamePar);
         $userLogged = null;
 
         if($user != null){
 
-            if(password_verify($passwordPar, $user->password)){
+            if($passwordPar == $user->getPassword()){
                 $userLogged = LoginRepository::extract($usernamePar);
             }else{
                 echo "<p class='passwordCorrection'>Password incorrect</p>";
@@ -92,14 +87,21 @@ class User {
         return $ret;
     }
 
+    /**
+     * This method registers a new user if it isn't already registered.
+     * @param string $usernamePar The username of the user
+     * @param string $passwordPar The password of the user
+     * @param string $passwordConfirmPar The password confirmation of the user
+     */
     public static function register(string $usernamePar, string $passwordPar, string $passwordConfirmPar){
 
         $tryUser = LoginRepository::extractUsername($usernamePar);
+
         if($tryUser == null){
 
             if($passwordPar == $passwordConfirmPar){
 
-                $user = new User(0, $usernamePar, $passwordPar);
+                $user = new User('', $usernamePar, $passwordPar);
                 $insert = LoginRepository::insert($user);
 
                 if($insert){
@@ -141,19 +143,6 @@ class User {
     
             }
         }
-
-         /*else{
-
-            if($usernamePar == "" || $passwordPar == "" || $passwordConfirmPar == ""){
-
-                echo "<p class='userFound'>Please fill all the fields</p>";
-
-            } 
-            else {
-            
-                
-            }
-        }*/
     }
 }
 
