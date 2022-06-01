@@ -7,30 +7,51 @@
     /**
      * Get the controller and the action from the URL with the GET method
      */
+    $controller = '';
+    $action = '';
 
-    $controller = $_GET['controller'];
-    $action = $_GET['action'];
+    if(isset($_GET["controller"])){
+        $controller = $_GET["controller"];
+    }
+     
+    if(isset($_GET["action"])){
+        $action = $_GET["action"];
+    }
 
     if($controller == "login"){
 
         if($action == "login"){
+            $username = '';
+            $password = '';
 
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            if(isset($_POST["username"])){
+                $username = $_POST["username"];
+            }
+
+            if(isset($_POST["password"])){
+                $password = $_POST["password"];
+            }
 
             $userLoggedId = User::login($username, $password);
-            if($userLoggedId == -1){
+
+            if($userLoggedId == '-1'){
                 
-                echo '<p id="errorData"> Username o password errati </p>';
-                require_once("../loginpage.php");
+                header("Location: ../loginpage.php");
+                echo '<p id="errorData"> Username o password errati </p>';  // non stampa l'errore
                 
             } else {
                     
                 echo '<p id="successData"> Benvenuto '.$username.' </p>';
-                $userLogged = TaskRepository::extractAllByUser($userLoggedId);
+                $userLogged[] = TaskRepository::extractAllByUser($userLoggedId);
 
-                foreach ($userLogged as $task) {
-                    echo '<p class="task">'.$task->getName().'</p>';
+                if($userLogged == '-1'){
+                    echo '<p>Sono mona</p>';
+                } else {
+                    echo '<p>Sono una pippa</p>';
+                }
+
+                foreach($userLogged as $task){
+                    echo '<p class="task">' . $task->getName(). '</p>';
                 }
 
             }
@@ -49,27 +70,27 @@
 
         if($action == "addTask"){
 
-            $userId = $_POST['userId'];
-            $taskName = $_POST['taskName'];
-            $taskDescription = $_POST['taskDescription'];
+            $userId = $_GET['userId'];
+            $taskName = $_GET['taskName'];
+            $taskDescription = $_GET['taskDescription'];
 
-            $newTask = TaskRepository::insert(new Task($taskName, $userId));
+            $newTask = TaskRepository::insert(new Task('', $taskName, $userId));
 
         } else if($action == "editTask"){
 
-            $taskId = $_POST['taskId'];
-            $taskName = $_POST['taskName'];
+            $taskId = $_GET['taskId'];
+            $taskName = $_GET['taskName'];
 
             $editTask = TaskRepository::update($taskId, $taskName);
 
         } else if($action == "deleteTask"){
 
-            $taskId = $_POST['taskId'];
+            $taskId = $_GET['taskId'];
             $deleteTask = TaskRepository::delete($taskId);
 
         } else if($action == "getTask"){
 
-            $taskId = $_POST['taskId'];
+            $taskId = $_GET['taskId'];
             $getTask = TaskRepository::extractAllByUser($taskId);
 
         }

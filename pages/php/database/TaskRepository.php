@@ -13,7 +13,7 @@
         private static string $fileName = 'task.json';
         public static int $id = 0;
 
-        public static function extractAllByUser($userId): array{
+        public static function extractAllByUser(string $userId): array{ // FIXARE STA FUNZIONE CHE NON VA, IL FOREACH NON STAMPA LA ROBA GIUSTA FARE TEST CON VAR_DUMP
 
             $arrayTask = [];
 
@@ -23,23 +23,28 @@
 
                 $arrayDB = $db -> select( '*' ) -> from ( self::$fileName ) -> where( [ 'userId' => $userId ] ) -> get();
 
-                foreach ($arrayDB as $objDB) {
-                            
-                    $objTask = new Task(
+                //var_dump($arrayDB);
+
+                for($i = 0; sizeof($arrayDB); $i++) {
+                    
+                    /*$objTask = new Task(
                         $objDB["name"],
                         $objDB["userId"],
                         $objDB["taskId"]
-                    );
+                    );*/
 
-                    $arrayTask[] = $objTask;
+                    var_dump($arrayDB[$i]);
+
+                    //array_push($arrayTask, $objTask);
                     
+                    //var_dump($objDB);
+
                 }
-
-
+                
             } catch (\Throwable $th){
-
+                
             }
-
+            
             return $arrayTask;
 
         }

@@ -1,19 +1,22 @@
 <?php
 
-require_once("../database/TaskRepository.php");
+require_once(__DIR__ . "/../database/TaskRepository.php");
 
 class Task {
 
-    private string $name;
-    private int $userId;
-    private int $taskId;
-    private static int $taskIdCounter = 1;
+    private string  $name;
+    private string  $userId;
+    private int     $taskId;
 
-    public function __construct(string $name, int $userId) {
+    public function __construct(string $taskId,string $name, string $userId) {
+        if($taskId == ''){
+            $this->taskId = uniqid();
+        } else {
+            $this->taskId = $taskId;
+        }
+        
         $this->name = $name;
         $this->userId = $userId;
-        $this->taskId = $this->taskIdCounter;
-        Task::$taskIdCounter++;
     }
 
     public function getName(): string {
@@ -23,10 +26,10 @@ class Task {
         $this->name = $name;
     }
 
-    public function getUserId(): int {
+    public function getUserId(): string {
         return $this->userId;
     }
-    public function setUserId(int $userId): void {
+    public function setUserId(string $userId): void {
         $this->userId = $userId;
     }
 

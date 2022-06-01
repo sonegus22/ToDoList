@@ -1,11 +1,5 @@
 [
     {
-        "userId": 1,
-        "username": "Giulia",
-        "password": "1234"
-    }
-,
-    {
         "userId": "629792d0a5249",
         "username": "Stefano",
         "password": "1234"
@@ -26,6 +20,12 @@
     {
         "userId": "629793815083a",
         "username": "Bianchi",
+        "password": "1234"
+    }
+,
+    {
+        "userId": "62979ca6963bd",
+        "username": "Gianni",
         "password": "1234"
     }
 ]

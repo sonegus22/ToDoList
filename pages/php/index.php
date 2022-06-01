@@ -59,7 +59,7 @@
             $taskName = $_POST['taskName'];
             $taskDescription = $_POST['taskDescription'];
 
-            $newTask = TaskRepository::insert(new Task($taskName, $userId));
+            $newTask = TaskRepository::insert(new Task('', $taskName, $userId));
 
         } else if($action == "editTask"){
 

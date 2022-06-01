@@ -1,7 +1,7 @@
 <?php
 
-require_once("../database/LoginRepository.php");
-require_once('../database/IdCounterRepository.php');
+require_once(__DIR__ . "/../database/LoginRepository.php");
+// require_once('../database/IdCounterRepository.php');
 
 class User {
 
@@ -61,7 +61,7 @@ class User {
      * @return int User Id
      */
     public static function login (string $usernamePar, string $passwordPar) : string {
-        $user = LoginRepository::extractUsernamePassword($usernamePar);
+        $user = LoginRepository::extract($usernamePar);
         $userLogged = null;
 
         if($user != null){
@@ -70,16 +70,14 @@ class User {
                 $userLogged = LoginRepository::extract($usernamePar);
             }else{
                 echo "<p class='passwordCorrection'>Password incorrect</p>";
-                $userLogged = -1;
             }
 
         }else{
             echo "<p class='userFound'>User not found</p>";
-            $userLogged = 0;
         }
 
         if($userLogged == null){
-            $ret = -1;
+            $ret = '-1';
         }else{
             $ret = $userLogged->userId;
         }
