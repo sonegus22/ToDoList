@@ -1,11 +1,11 @@
 <?php
 
-require_once('../database/LoginRepository.php');
+require_once("../database/LoginRepository.php");
 require_once('../database/IdCounterRepository.php');
 
 class User {
 
-    private int    $userId;
+    private string $userId;
     private string $username;
     private string $password;
 
@@ -60,7 +60,7 @@ class User {
      * @param string $passwordPar The password of the user
      * @return int User Id
      */
-    public static function login (string $usernamePar, string $passwordPar) : int {
+    public static function login (string $usernamePar, string $passwordPar) : string {
         $user = LoginRepository::extractUsernamePassword($usernamePar);
         $userLogged = null;
 
@@ -126,7 +126,7 @@ class User {
 
                 if($passwordPar == $passwordConfirmPar){
 
-                    $user = new User(0, $usernamePar, $passwordPar);
+                    $user = new User('', $usernamePar, $passwordPar);
                     $insert = LoginRepository::insert($user);
     
                     if($insert){

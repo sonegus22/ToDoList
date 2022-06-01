@@ -83,9 +83,6 @@
 
             $operationDone = false;
 
-            self::$id += 1;
-            $objUser -> setUserId(self::$id);
-
             try {
 
                 $db = new JSONDB(self::$directoryDB);
@@ -148,7 +145,7 @@
                 foreach ($arrayDB as $objDB) {
 
                     $objUser = new User (
-                        $objDB[null],
+                        $objDB["userId"],
                         $objDB["username"],
                         $objDB["password"]
                     );
