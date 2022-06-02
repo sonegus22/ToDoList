@@ -3,38 +3,32 @@
 
 	<head>
 
+        <meta charset="UTF-8">
+        <title>Sign up</title>
 		<link href="../css/stileSignUp.css" rel ="stylesheet" type ="text/css">
 
 	</head>
 	
     <body>
         
-        <form class = "centerMainform">
+        <form class = "centerMainform" action = '../php/controller/controller.php?controller=login&action=register' method="POST">
             <div>
             <img id="imgLog" src="..\img\avatarLog.png" alt="Avatar" class="avatar">
             <br>
             <label id="usernameLabel" for="Username">Username</label><br>
-            <input type="text" id="username" name="name" value=""><br>
+            <input type="text" id="username" name="username" value=""><br>
 
             <label id="passwordLabel" for="password">Password</label><br>
-            <input type="text" id="password" name="password" value=""><br>
+            <input type="password" id="password" name="password" value=""><br>
 
             <label id="confermaLabel" for="Conferma">Conferma Password</label><br>
-            <input type="text" id="conferma" name="conferma" value=""><br><br>
+            <input type="password" id="conferma" name="passwordConfirm" value=""><br><br>
 
             <button id="buttonLog" type="submit">Registati</button>
             <a id="linkLogin" href="./login.html" >Accedi</a>
           </div>
         </form> 
 
-
-
-
-
-
-
-
     </body>
-
 
 </html>

@@ -1,0 +1,2 @@
+- collegamenti corretti con le pagine
+- gestire richieste task con server
