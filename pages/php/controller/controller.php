@@ -42,16 +42,12 @@
             } else {
                     
                 echo '<p id="successData"> Benvenuto '.$username.' </p>';
-                $userLogged[] = TaskRepository::extractAllByUser($userLoggedId);
+                $userLogged = TaskRepository::extractAllByUser($userLoggedId);
 
-                if($userLogged == '-1'){
-                    echo '<p>Sono mona</p>';
-                } else {
-                    echo '<p>Sono una pippa</p>';
-                }
+                json_encode($userLogged);
 
                 foreach($userLogged as $task){
-                    echo '<p class="task">' . $task->getName(). '</p>';
+                    echo '<p class="task">' . $task->getName() . '</p>';
                 }
 
             }

@@ -93,7 +93,7 @@ class User {
      */
     public static function register(string $usernamePar, string $passwordPar, string $passwordConfirmPar){
 
-        $tryUser = LoginRepository::extractUsername($usernamePar);
+        $tryUser = LoginRepository::extract($usernamePar);
 
         if($tryUser == null){
 
