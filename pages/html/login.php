@@ -11,8 +11,10 @@
     <body>
 
         <?php
-            if($_GET["error"] == 1) {
-                echo '<script> alert("Username o password errati") </script>';
+            if(isset($_GET["error"])) {
+                if($_GET["error"] == 1) {
+                    echo '<script> alert("Username o password errati") </script>';
+                }    
             }
         ?>
 
